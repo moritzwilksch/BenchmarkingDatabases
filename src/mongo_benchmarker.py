@@ -7,6 +7,8 @@ from pymongo import MongoClient
 from rich.table import Table
 
 c = Console()
+
+
 def printinfo(text: str) -> None:
     c.print(f"[green][INFO][/] {text}")
 
@@ -67,7 +69,6 @@ class MongoBenchmarker:
         table = Table(title="MongoDB Benchmark")
         table.add_column("Benchmark", justify="left")
         table.add_column("Time", justify="center", style="cyan bold")
-
 
         table.add_row("insert_all", f"{self.insert_all():.3f}")
         table.add_row("insert_separately", f"{self.insert_separately():.3f}")

@@ -1,13 +1,10 @@
-from sqlalchemy.orm.session import SessionTransaction
 from sqlalchemy.orm import backref, relation, sessionmaker, relationship
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
-import os
 from sqlalchemy.ext.declarative import declarative_base
 import random
 import datetime
 import time
 from rich.console import Console
-from rich.markdown import Markdown
 from rich.table import Table
 import psycopg2
 
@@ -133,8 +130,8 @@ class VanillaPostgresBenchmarker:
             name = "".join(random.sample(self.letters, random.randint(4, 25)))
             dob = datetime.datetime.now()
             users.append((name, dob))
-        
-        cur.executemany("INSERT INTO users (name, dob) VALUES (%s, %s)", users)    
+
+        cur.executemany("INSERT INTO users (name, dob) VALUES (%s, %s)", users)
         self.conn.commit()
 
     @timeit_decorator
