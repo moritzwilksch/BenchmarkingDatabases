@@ -39,7 +39,10 @@ class MongoBenchmarker:
         self.db = self.client["benchmarking"]
         self.collection = self.db["testcollection"]
         self.collection.drop()
+
+        # Just an experiment: Indices
         # self.collection = self.db["testcollection"]
+        # self.collection.create_index([("ticker", 1), ("name", 1)])
 
     @timeit_decorator
     def insert_all(self) -> None:
