@@ -1,5 +1,8 @@
 # Benchmarking Databases
-A repo for benchmarking a couple of databases for simple usecases in pyhton
+A repo for benchmarking a couple of databases for simple usecases in pyhton.
+
+- Using appropriate python libraries, SQLAlchemy and PyMongo
+- Without any indices or optimization
 
 # Synthetic Data
 ## MongoDB (`pymongo`)
@@ -10,5 +13,9 @@ A repo for benchmarking a couple of databases for simple usecases in pyhton
 
 # Real Data
 ## MongoDB
+![image](https://user-images.githubusercontent.com/58488209/152327145-2225ee6a-e914-44fb-8042-c4cababad9bb.png)
+
 
 ## PostgreSQL
+![image](https://user-images.githubusercontent.com/58488209/152327038-dc3fce5d-2e4d-458e-95d0-33b440b1d4a7.png)
+
