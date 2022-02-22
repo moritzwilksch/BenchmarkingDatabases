@@ -1,3 +1,4 @@
+from http.client import ImproperConnectionState
 from pymongo import MongoClient
 import os
 import json
@@ -8,6 +9,7 @@ from rich.console import Console
 from rich.markdown import Markdown
 from pymongo import MongoClient
 from rich.table import Table
+from joblib import parallel, delayed
 
 with open("data/dump.json", "r") as f:
     data = json.load(f)
@@ -35,7 +37,9 @@ class MongoBenchmarker:
         user = os.getenv("MONGO_INITDB_ROOT_USERNAME")
         passwd = os.getenv("MONGO_INITDB_ROOT_PASSWORD")
 
-        self.client = MongoClient(f"mongodb://{user}:{passwd}@localhost:27017", authsource="admin")
+        self.client = MongoClient(
+            f"mongodb://{user}:{passwd}@localhost:27017", authsource="admin"
+        )
         self.db = self.client["benchmarking"]
         self.collection = self.db["testcollection"]
         self.collection.drop()

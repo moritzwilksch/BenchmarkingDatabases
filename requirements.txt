@@ -1,3 +1,5 @@
 sqlalchemy
 rich
 pymongo
+sqlmodel
+psycopg2-binary
