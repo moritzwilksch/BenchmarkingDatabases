@@ -3,3 +3,4 @@ rich
 pymongo
 sqlmodel
 psycopg2-binary
+peewee

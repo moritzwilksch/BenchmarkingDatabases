@@ -6,12 +6,14 @@ from rich.table import Table
 import os
 import json
 from sqlalchemy import Column
-from sqlmodel import Field, SQLModel, create_engine, Session, JSON
+from sqlmodel import Field, SQLModel, create_engine, Session, JSON, ARRAY
 from typing import Optional
 
 with open("data/dump.json", "r") as f:
     data = json.load(f)
 
+# print(data[0]["values"])
+# exit()
 
 c = Console()
 
@@ -35,7 +37,7 @@ class Fact(SQLModel, table=True):
     ticker: str
     name: str
     unit: str
-    values: dict = Field(sa_column=Column(JSON))
+    values: list = Field(sa_column=Column(ARRAY(JSON)))
 
     # class Config:
     #     arbitrary_types_allowed = True
@@ -108,7 +110,7 @@ class PostgresBenchmarker:
 
         table.add_row("insert_all", f"{self.insert_all():.3f}")
         table.add_row("insert_separately", f"{self.insert_separately():.3f}")
-        table.add_row("insert_concurrently", f"{self.insert_concurrently():.3f}")
+        # table.add_row("insert_concurrently", f"{self.insert_concurrently():.3f}")
         table.add_row("query1", f"{self.query1():.3f}")
         table.add_row("query2", f"{self.query2():.3f}")
         c.print(table)
