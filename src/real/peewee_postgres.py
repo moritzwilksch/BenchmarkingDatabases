@@ -1,10 +1,11 @@
-from peewee import Model, PostgresqlDatabase, TextField, PrimaryKeyField
-from playhouse.postgres_ext import JSONField, PostgresqlExtDatabase
+import json
+import os
 import time
+
+from peewee import Model, PostgresqlDatabase, PrimaryKeyField, TextField
+from playhouse.postgres_ext import JSONField, PostgresqlExtDatabase
 from rich.console import Console
 from rich.table import Table
-import os
-import json
 
 c = Console()
 with open("data/dump.json", "r") as f:

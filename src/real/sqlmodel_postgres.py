@@ -1,13 +1,14 @@
-from email.policy import default
+import json
+import os
 import time
+from email.policy import default
+from typing import Optional
+
 from joblib import Parallel, delayed
 from rich.console import Console
 from rich.table import Table
-import os
-import json
 from sqlalchemy import Column
-from sqlmodel import Field, SQLModel, create_engine, Session, JSON, ARRAY
-from typing import Optional
+from sqlmodel import ARRAY, JSON, Field, Session, SQLModel, create_engine
 
 with open("data/dump.json", "r") as f:
     data = json.load(f)
@@ -76,7 +77,9 @@ class PostgresBenchmarker:
         def worker(item: dict):
             self.session.add(Fact(**item))
 
-        _ = Parallel(prefer="processes", n_jobs=3)(delayed(worker)(item) for item in data)
+        _ = Parallel(prefer="processes", n_jobs=3)(
+            delayed(worker)(item) for item in data
+        )
         self.session.commit()
 
     # @timeit_decorator

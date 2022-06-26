@@ -1,14 +1,23 @@
-from sqlalchemy.orm import backref, relation, sessionmaker, relationship
-from sqlalchemy import JSON, create_engine, Column, Integer, String, DateTime, ARRAY
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import select
-import random
 import datetime
+import json
+import os
+import random
 import time
+
 from rich.console import Console
 from rich.table import Table
-import os
-import json
+from sqlalchemy import (
+    ARRAY,
+    JSON,
+    Column,
+    DateTime,
+    Integer,
+    String,
+    create_engine,
+    select,
+)
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import backref, relation, relationship, sessionmaker
 
 with open("data/dump.json", "r") as f:
     data = json.load(f)
@@ -85,10 +94,11 @@ class PostgresBenchmarker:
     @timeit_decorator
     def query2(self) -> None:
         # results = self.collection.find({"ticker": "ABBV", "name": {"$regex": "Rev"}})
-        results = self.session.query(Facts).filter(Facts.name.like("%Rev%"), Facts.ticker == "ABBV")
+        results = self.session.query(Facts).filter(
+            Facts.name.like("%Rev%"), Facts.ticker == "ABBV"
+        )
 
         printinfo(f"query2: {len(list(results))} results found")
-
 
     def run(self):
         c = Console()
@@ -102,7 +112,6 @@ class PostgresBenchmarker:
         table.add_row("query1", f"{self.query1():.3f}")
         table.add_row("query2", f"{self.query2():.3f}")
         c.print(table)
-
 
 
 if __name__ == "__main__":

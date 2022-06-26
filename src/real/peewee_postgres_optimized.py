@@ -1,11 +1,11 @@
-from peewee import Model, PostgresqlDatabase, TextField, PrimaryKeyField, FloatField
-from playhouse.postgres_ext import JSONField, PostgresqlExtDatabase
+import json
+import os
 import time
+
+from peewee import FloatField, Model, PostgresqlDatabase, PrimaryKeyField, TextField
+from playhouse.postgres_ext import JSONField, PostgresqlExtDatabase
 from rich.console import Console
 from rich.table import Table
-import os
-import json
-
 from sqlalchemy import ForeignKey
 
 c = Console()

@@ -1,8 +1,9 @@
 #%%
+import json
 import os
+
 import polars as pl
 from pymongo import MongoClient
-import json
 
 user = os.getenv("MONGO_INITDB_ROOT_USERNAME")
 passwd = os.getenv("MONGO_INITDB_ROOT_PASSWORD")

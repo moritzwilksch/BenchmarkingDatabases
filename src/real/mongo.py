@@ -1,15 +1,15 @@
-from http.client import ImproperConnectionState
-from pymongo import MongoClient
-import os
-import json
-import random
 import datetime
+import json
+import os
+import random
 import time
+from http.client import ImproperConnectionState
+
+from joblib import delayed, parallel
+from pymongo import MongoClient
 from rich.console import Console
 from rich.markdown import Markdown
-from pymongo import MongoClient
 from rich.table import Table
-from joblib import parallel, delayed
 
 with open("data/dump.json", "r") as f:
     data = json.load(f)

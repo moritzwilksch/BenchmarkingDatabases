@@ -1,12 +1,13 @@
-from sqlalchemy.orm import backref, relation, sessionmaker, relationship
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-import random
 import datetime
+import random
 import time
+
+import psycopg2
 from rich.console import Console
 from rich.table import Table
-import psycopg2
+from sqlalchemy import Column, DateTime, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import backref, relation, relationship, sessionmaker
 
 c = Console()
 Base = declarative_base()
@@ -98,7 +99,7 @@ class PostgresBenchmarker:
 
 # TODO: fix this class
 class VanillaPostgresBenchmarker:
-    """ Does NOT use SQLAlchemy, only vanilla PsycoPG2 """
+    """Does NOT use SQLAlchemy, only vanilla PsycoPG2"""
 
     def __init__(self, N=10_000) -> None:
         self.conn = psycopg2.connect(

@@ -1,9 +1,10 @@
-import random
 import datetime
+import random
 import time
+
+from pymongo import MongoClient
 from rich.console import Console
 from rich.markdown import Markdown
-from pymongo import MongoClient
 from rich.table import Table
 
 c = Console()
