@@ -1,0 +1,8 @@
+name: db-bench
+dependencies:
+  - pymongo
+  - pymongoarrow
+  - ipykernel
+  - pandas
+  - pyarrow
+  - polars
